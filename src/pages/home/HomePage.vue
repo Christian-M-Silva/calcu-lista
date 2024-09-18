@@ -2,6 +2,7 @@
   <div class="mx-3">
     <div class="row justify-center">
       <div class="rounded-borders bg-primary text-white">
+        <h2>Calcu-lista</h2>
         <div class="row">
           <q-input
             v-model="text"
