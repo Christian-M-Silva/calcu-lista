@@ -11,12 +11,22 @@
             outline
             rounded
           />
-          <input-component
+          <q-input
             v-model="text"
             type="text"
             placeholder="Busque por um item"
             bg-color="white"
-          />
+            rounded
+            class="w-80"
+            outlined
+          >
+            <template v-slot:append>
+              <q-avatar>
+                <q-icon name="search" size="2rem" />
+              </q-avatar>
+            </template>
+          </q-input>
+
           <q-btn
             text-color="white"
             icon="import_export"
@@ -29,19 +39,49 @@
       <main
         class="ellipsis glass rounded-t-3xl min-h-[calc(100vh-14.5rem)] pt-5 px-4"
       >
-        <q-card dark class="bg-grey-9 rounded-borders">
-          <q-card-section class="row">
+        <q-card class="bg-red-8 mt-4 rounded-borders">
+          <q-card-section class="row gap-2">
             <q-checkbox left-label v-model="orange" />
-            <q-input v-model="text" type="text" label="Qtd" />
-            <q-input v-model="text" type="text" label="Item" />
-            <q-input v-model="text" type="text" label="Valor Unidade" />
-            <q-input v-model="text" type="text" label="Valor total" />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Qtd"
+              bg-color="white"
+              outlined
+            />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Item"
+              bg-color="white"
+              rounded
+              outlined
+            />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Valor Unidade"
+              bg-color="white"
+              rounded
+              outlined
+            />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Valor total"
+              bg-color="white"
+              rounded
+              outlined
+            />
             <q-btn color="primary" icon="check" label="OK" @click="onClick" />
           </q-card-section>
         </q-card>
-
-        <div class="row">
-          <span>R$ 650,00</span>
+      </main>
+      <div
+        class="row justify-between items-center fixed left-0 right-0 mx-auto bottom-0 w-1/2 bg-slate-950 gap-2 rounded-t-2xl p-4"
+      >
+        <span class="">R$ 650,00</span>
+        <div class="row gap-2">
           <q-btn
             color="primary"
             icon="check"
@@ -55,7 +95,7 @@
             @click="onClick"
           />
         </div>
-      </main>
+      </div>
     </div>
   </div>
 </template>
