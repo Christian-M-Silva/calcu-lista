@@ -73,7 +73,44 @@
               rounded
               outlined
             />
-            <q-btn color="primary" icon="check" label="OK" @click="onClick" />
+            <q-btn rounded color="red" icon="delete" @click="onClick" />
+          </q-card-section>
+        </q-card>
+        <q-card class="bg-green-8 mt-4 rounded-borders">
+          <q-card-section class="row gap-2">
+            <q-checkbox left-label v-model="orange" />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Qtd"
+              bg-color="white"
+              outlined
+            />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Item"
+              bg-color="white"
+              rounded
+              outlined
+            />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Valor Unidade"
+              bg-color="white"
+              rounded
+              outlined
+            />
+            <q-input
+              v-model="text"
+              type="text"
+              label="Valor total"
+              bg-color="white"
+              rounded
+              outlined
+            />
+            <q-btn rounded color="red" icon="delete" @click="onClick" />
           </q-card-section>
         </q-card>
       </main>
@@ -83,14 +120,14 @@
         <span class="">R$ 650,00</span>
         <div class="row gap-2">
           <q-btn
-            color="primary"
-            icon="check"
+            color="positive"
+            icon="upgrade"
             label="Exportar"
             @click="onClick"
           />
           <q-btn
-            color="primary"
-            icon="check"
+            color="grey"
+            icon="clear_all"
             label="Limpar lista"
             @click="onClick"
           />
