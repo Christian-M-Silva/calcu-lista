@@ -117,12 +117,18 @@
       <div
         class="row justify-between items-center fixed left-0 right-0 mx-auto bottom-0 w-1/2 bg-slate-950 gap-2 rounded-t-2xl p-4"
       >
-        <span class="">R$ 650,00</span>
+        <span class="text-xl">R$ 650,00</span>
         <div class="row gap-2">
           <q-btn
             color="positive"
             icon="upgrade"
             label="Exportar"
+            @click="onClick"
+          />
+          <q-btn
+            color="blue"
+            icon="save"
+            label="Salvar temporariamente"
             @click="onClick"
           />
           <q-btn
