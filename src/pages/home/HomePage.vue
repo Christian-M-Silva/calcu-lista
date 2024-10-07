@@ -140,6 +140,14 @@
         </div>
       </div>
     </div>
+    <div class="px-1 text-center fixed right-0 bottom-0">
+      <a
+        href="https://github.com/Christian-M-Silva"
+        target="_blank"
+        class="bg-red-500 font-bold shadow-lg shadow-red-500/50 rounded-md p-2"
+        >DEVELOPED 🎮 <span class="text-red-700">CHRISTIAN</span></a
+      >
+    </div>
   </div>
 </template>
 <script src="./HomePage.ts"></script>
