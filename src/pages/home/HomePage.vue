@@ -17,7 +17,7 @@
             placeholder="Busque por um item"
             bg-color="white"
             rounded
-            class="w-80"
+            class="gt520:w-80 w-52"
             outlined
           >
             <template v-slot:append>
