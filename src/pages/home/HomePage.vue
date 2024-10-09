@@ -37,9 +37,16 @@
         </div>
       </header>
       <main
-        class="ellipsis glass rounded-t-3xl min-h-[calc(100vh-14.5rem)] pt-5 px-4"
+        class="flex flex-col ellipsis max-gt520:w-screen glass rounded-t-3xl min-h-[calc(100vh-14.5rem)] py-5 px-4 max-gt520:mb-6 gap-2"
       >
-        <q-card class="bg-red-8 mt-4 rounded-borders">
+        <q-btn
+          v-if="$q.screen.width < 520"
+          color="grey"
+          icon="clear_all"
+          label="Limpar lista"
+          @click="onClick"
+        />
+        <q-card class="bg-red-8 rounded-borders">
           <q-card-section class="grid grid-cols-1 gt520:flex gap-2">
             <div class="flex gap-2 justify-between items-center">
               <q-checkbox size="lg" left-label v-model="orange" />
@@ -93,7 +100,7 @@
             />
           </q-card-section>
         </q-card>
-        <q-card class="bg-green-8 mt-4 rounded-borders">
+        <q-card class="bg-green-8 rounded-borders">
           <q-card-section class="grid grid-cols-1 gt520:flex gap-2">
             <div class="flex gap-2 justify-between items-center">
               <q-checkbox size="lg" left-label v-model="orange" />
@@ -148,24 +155,38 @@
           </q-card-section>
         </q-card>
       </main>
-      <div
-        class="row justify-between items-center fixed left-0 right-0 mx-auto bottom-0 w-1/2 bg-slate-950 gap-2 rounded-t-2xl p-4"
+      <footer
+        class="px-1 text-center"
+        :class="$q.screen.width < 520 ? 'mb-32' : 'fixed right-0 bottom-0'"
       >
-        <span class="text-xl">R$ 650,00</span>
-        <div class="row gap-2">
+        <a
+          href="https://github.com/Christian-M-Silva"
+          target="_blank"
+          class="bg-red-500 font-bold shadow-lg shadow-red-500/50 rounded-md p-2"
+          >DEVELOPED 🎮 <span class="text-red-700">CHRISTIAN</span></a
+        >
+      </footer>
+      <div
+        class="row justify-between items-center fixed left-0 right-0 mx-auto bottom-0 bg-slate-950 gap-2 rounded-t-2xl p-4 gt520:w-1/2"
+      >
+        <span class="gt520:text-xl text-lg">R$ 650,00</span>
+        <div class="row gap-1">
           <q-btn
             color="positive"
             icon="upgrade"
             label="Exportar"
+            :size="$q.screen.width < 520 ? '12px' : ''"
             @click="onClick"
           />
           <q-btn
             color="blue"
             icon="save"
             label="Salvar temporariamente"
+            :size="$q.screen.width < 520 ? '12px' : ''"
             @click="onClick"
           />
           <q-btn
+            v-if="$q.screen.width > 520"
             color="grey"
             icon="clear_all"
             label="Limpar lista"
@@ -173,14 +194,6 @@
           />
         </div>
       </div>
-    </div>
-    <div class="px-1 text-center fixed right-0 bottom-0">
-      <a
-        href="https://github.com/Christian-M-Silva"
-        target="_blank"
-        class="bg-red-500 font-bold shadow-lg shadow-red-500/50 rounded-md p-2"
-        >DEVELOPED 🎮 <span class="text-red-700">CHRISTIAN</span></a
-      >
     </div>
   </div>
 </template>
