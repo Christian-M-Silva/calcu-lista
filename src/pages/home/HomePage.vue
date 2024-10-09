@@ -40,15 +40,26 @@
         class="ellipsis glass rounded-t-3xl min-h-[calc(100vh-14.5rem)] pt-5 px-4"
       >
         <q-card class="bg-red-8 mt-4 rounded-borders">
-          <q-card-section class="row gap-2">
-            <q-checkbox left-label v-model="orange" />
-            <q-input
-              v-model="text"
-              type="text"
-              label="Qtd"
-              bg-color="white"
-              outlined
-            />
+          <q-card-section class="grid grid-cols-1 gt520:flex gap-2">
+            <div class="flex gap-2 justify-between items-center">
+              <q-checkbox size="lg" left-label v-model="orange" />
+              <q-input
+                v-model="text"
+                class="max-gt520:w-48"
+                rounded
+                type="number"
+                label="Qtd"
+                bg-color="white"
+                outlined
+              />
+              <q-btn
+                v-if="$q.screen.width < 520"
+                rounded
+                color="red"
+                icon="delete"
+                @click="onClick"
+              />
+            </div>
             <q-input
               v-model="text"
               type="text"
@@ -59,7 +70,7 @@
             />
             <q-input
               v-model="text"
-              type="text"
+              type="number"
               label="Valor Unidade"
               bg-color="white"
               rounded
@@ -67,25 +78,42 @@
             />
             <q-input
               v-model="text"
-              type="text"
+              type="number"
               label="Valor total"
               bg-color="white"
               rounded
               outlined
             />
-            <q-btn rounded color="red" icon="delete" @click="onClick" />
+            <q-btn
+              v-if="$q.screen.width > 520"
+              rounded
+              color="red"
+              icon="delete"
+              @click="onClick"
+            />
           </q-card-section>
         </q-card>
         <q-card class="bg-green-8 mt-4 rounded-borders">
-          <q-card-section class="row gap-2">
-            <q-checkbox left-label v-model="orange" />
-            <q-input
-              v-model="text"
-              type="text"
-              label="Qtd"
-              bg-color="white"
-              outlined
-            />
+          <q-card-section class="grid grid-cols-1 gt520:flex gap-2">
+            <div class="flex gap-2 justify-between items-center">
+              <q-checkbox size="lg" left-label v-model="orange" />
+              <q-input
+                v-model="text"
+                class="max-gt520:w-48"
+                rounded
+                type="number"
+                label="Qtd"
+                bg-color="white"
+                outlined
+              />
+              <q-btn
+                v-if="$q.screen.width < 520"
+                rounded
+                color="red"
+                icon="delete"
+                @click="onClick"
+              />
+            </div>
             <q-input
               v-model="text"
               type="text"
@@ -96,7 +124,7 @@
             />
             <q-input
               v-model="text"
-              type="text"
+              type="number"
               label="Valor Unidade"
               bg-color="white"
               rounded
@@ -104,13 +132,19 @@
             />
             <q-input
               v-model="text"
-              type="text"
+              type="number"
               label="Valor total"
               bg-color="white"
               rounded
               outlined
             />
-            <q-btn rounded color="red" icon="delete" @click="onClick" />
+            <q-btn
+              v-if="$q.screen.width > 520"
+              rounded
+              color="red"
+              icon="delete"
+              @click="onClick"
+            />
           </q-card-section>
         </q-card>
       </main>
