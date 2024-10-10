@@ -206,7 +206,8 @@
         >
           Os dados estão sendo salvos localmente no seu navegador. No entanto,
           caso o histórico ou os dados de navegação sejam limpos, essas
-          informações poderão ser perdidas.
+          informações poderão ser perdidas. Para ter os dados salvos sugerimos a
+          exportação dos dados.
         </q-card-section>
 
         <div class="bg-gray-900 pl-2 py-2 flex items-center">
