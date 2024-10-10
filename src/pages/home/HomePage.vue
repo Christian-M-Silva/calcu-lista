@@ -181,7 +181,7 @@
           <q-btn
             color="blue"
             icon="save"
-            label="Salvar temporariamente"
+            label="Salvar"
             :size="$q.screen.width < 520 ? '12px' : ''"
             @click="onClick"
           />
@@ -195,6 +195,36 @@
         </div>
       </div>
     </div>
+    <q-dialog v-model="alert">
+      <q-card class="shadow-lg rounded-lg bg-dark">
+        <q-card-section class="bg-gray-900 text-white py-4 px-6 rounded-t-lg">
+          <div class="font-bold text-2xl">Atenção</div>
+        </q-card-section>
+
+        <q-card-section
+          class="bg-gray-900 py-4 px-6 text-gray-300 text-base leading-relaxed"
+        >
+          Os dados estão sendo salvos localmente no seu navegador. No entanto,
+          caso o histórico ou os dados de navegação sejam limpos, essas
+          informações poderão ser perdidas.
+        </q-card-section>
+
+        <div class="bg-gray-900 pl-2 py-2 flex items-center">
+          <q-checkbox v-model="orange" />
+          <span class="text-gray-400 font-medium">Não mostrar novamente</span>
+        </div>
+
+        <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
+          <q-btn
+            flat
+            label="Entendido"
+            color="white"
+            class="text-gray-400"
+            v-close-popup
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 <script src="./HomePage.ts"></script>
