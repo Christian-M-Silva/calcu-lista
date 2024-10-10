@@ -157,7 +157,7 @@
       </main>
       <footer
         class="px-1 text-center"
-        :class="$q.screen.width < 520 ? 'mb-32' : 'fixed right-0 bottom-0'"
+        :class="$q.screen.width < 520 ? 'mb-24' : 'fixed right-0 bottom-0'"
       >
         <a
           href="https://github.com/Christian-M-Silva"
