@@ -226,6 +226,20 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+    <q-dialog v-model="confirm">
+      <q-card class="shadow-lg rounded-lg bg-dark">
+        <q-card-section class="bg-gray-900 text-white py-4 rounded-t-lg">
+          <div class="font-bold gt520:text-2xl text-lg">
+            Deseja apagar todos os itens da lista?
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
+          <q-btn label="SIM" color="green" text-color="black" v-close-popup />
+          <q-btn label="NÃO" color="red" text-color="black" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 <script src="./HomePage.ts"></script>

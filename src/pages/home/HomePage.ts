@@ -3,7 +3,8 @@ import InputComponent from "@/components/atoms/input/InputComponent.vue";
 export default defineComponent({
   data() {
     return {
-      alert: true,
+      alert: false,
+      confirm: false,
     };
   },
   components: { InputComponent },
