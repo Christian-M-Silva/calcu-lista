@@ -8,9 +8,9 @@ export default defineComponent({
       confirm: false,
       list: [
         {
-          qtd: 0,
+          qtd: null,
           item: "",
-          unityValue: 0,
+          unityValue: null,
           totalValue: 0,
           isBuy: false,
         },
@@ -22,17 +22,19 @@ export default defineComponent({
   components: { InputComponent },
   methods: {
     calcTotal(item: Item, id: number) {
-      this.list[id].totalValue = item.unityValue * item.qtd;
-      this.valueTotal = 0;
-      this.list.map((item) => {
-        this.valueTotal += item.totalValue;
-      });
+      if (item.unityValue && item.qtd) {
+        this.list[id].totalValue = item.unityValue * item.qtd;
+        this.valueTotal = 0;
+        this.list.map((item) => {
+          this.valueTotal += item.totalValue;
+        });
+      }
     },
     addItem() {
       this.list.push({
-        qtd: 0,
+        qtd: null,
         item: "",
-        unityValue: 0,
+        unityValue: null,
         totalValue: 0,
         isBuy: false,
       });

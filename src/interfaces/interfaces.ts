@@ -1,7 +1,7 @@
 export interface Item {
-  qtd: number;
+  qtd: number | null;
   item: string;
-  unityValue: number;
+  unityValue: number | null;
   totalValue: number;
   isBuy: boolean;
 }
