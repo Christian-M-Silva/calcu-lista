@@ -21,13 +21,10 @@ export default defineComponent({
   },
   components: { InputComponent },
   methods: {
-    calcTotal(item: Item, id: number) {
+    calcTotalItem(item: Item, id: number) {
       if (item.unityValue && item.qtd) {
         this.list[id].totalValue = item.unityValue * item.qtd;
-        this.valueTotal = 0;
-        this.list.map((item) => {
-          this.valueTotal += item.totalValue;
-        });
+        this.calcTotal();
       }
     },
     addItem() {
@@ -38,6 +35,19 @@ export default defineComponent({
         totalValue: 0,
         isBuy: false,
       });
+    },
+
+    calcTotal() {
+      this.valueTotal = 0;
+
+      this.list.map((itemMap) => {
+        this.valueTotal += itemMap.totalValue;
+      });
+    },
+
+    deleteItem(id: number) {
+      this.list.splice(id, 1);
+      this.calcTotal();
     },
 
     handleBeforeUnload(event: BeforeUnloadEvent) {

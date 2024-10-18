@@ -61,14 +61,15 @@
                 label="Qtd"
                 bg-color="white"
                 outlined
-                @update:model-value="calcTotal(item, id)"
+                @update:model-value="calcTotalItem(item, id)"
               />
               <q-btn
                 v-if="$q.screen.width < 520"
                 rounded
                 color="red"
                 icon="delete"
-                @click="onClick"
+                :disable="list.length == 1"
+                @click="deleteItem(id)"
               />
             </div>
             <q-input
@@ -86,7 +87,7 @@
               bg-color="white"
               rounded
               outlined
-              @update:model-value="calcTotal(item, id)"
+              @update:model-value="calcTotalItem(item, id)"
             />
             <q-input
               v-model="item.totalValue"
@@ -102,7 +103,8 @@
               rounded
               color="red"
               icon="delete"
-              @click="onClick"
+              :disable="list.length == 1"
+              @click="deleteItem(id)"
             />
           </q-card-section>
         </q-card>
