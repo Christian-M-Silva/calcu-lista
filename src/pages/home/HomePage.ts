@@ -15,13 +15,18 @@ export default defineComponent({
           isBuy: false,
         },
       ],
-      pendingReload: false, // Marca se o reload está pendente
+      pendingReload: false,
+      valueTotal: 0,
     };
   },
   components: { InputComponent },
   methods: {
     calcTotal(item: Item, id: number) {
       this.list[id].totalValue = item.unityValue * item.qtd;
+      this.valueTotal = 0;
+      this.list.map((item) => {
+        this.valueTotal += item.totalValue;
+      });
     },
     addItem() {
       this.list.push({
