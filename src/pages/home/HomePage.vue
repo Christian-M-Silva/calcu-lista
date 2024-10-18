@@ -46,18 +46,22 @@
           label="Limpar lista"
           @click="onClick"
         />
-        <q-card class="bg-red-8 rounded-borders">
-          <q-card-section class="grid grid-cols-1 gt520:flex gap-2">
+        <q-card v-for="(item, id) in list" :key="id" class="rounded-borders">
+          <q-card-section
+            :class="item.isBuy ? 'bg-green-8' : 'bg-red-8'"
+            class="grid grid-cols-1 gt520:flex gap-2"
+          >
             <div class="flex gap-2 justify-between items-center">
-              <q-checkbox size="lg" left-label v-model="orange" />
+              <q-checkbox size="lg" left-label v-model="item.isBuy" />
               <q-input
-                v-model="text"
+                v-model="item.qtd"
                 class="max-gt520:w-48"
                 rounded
                 type="number"
                 label="Qtd"
                 bg-color="white"
                 outlined
+                @update:model-value="calcTotal(item, id)"
               />
               <q-btn
                 v-if="$q.screen.width < 520"
@@ -68,7 +72,7 @@
               />
             </div>
             <q-input
-              v-model="text"
+              v-model="item.item"
               type="text"
               label="Item"
               bg-color="white"
@@ -76,19 +80,21 @@
               outlined
             />
             <q-input
-              v-model="text"
+              v-model="item.unityValue"
               type="number"
               label="Valor Unidade"
               bg-color="white"
               rounded
               outlined
+              @update:model-value="calcTotal(item, id)"
             />
             <q-input
-              v-model="text"
+              v-model="item.totalValue"
               type="number"
               label="Valor total"
               bg-color="white"
               rounded
+              disable
               outlined
             />
             <q-btn
@@ -100,60 +106,7 @@
             />
           </q-card-section>
         </q-card>
-        <q-card class="bg-green-8 rounded-borders">
-          <q-card-section class="grid grid-cols-1 gt520:flex gap-2">
-            <div class="flex gap-2 justify-between items-center">
-              <q-checkbox size="lg" left-label v-model="orange" />
-              <q-input
-                v-model="text"
-                class="max-gt520:w-48"
-                rounded
-                type="number"
-                label="Qtd"
-                bg-color="white"
-                outlined
-              />
-              <q-btn
-                v-if="$q.screen.width < 520"
-                rounded
-                color="red"
-                icon="delete"
-                @click="onClick"
-              />
-            </div>
-            <q-input
-              v-model="text"
-              type="text"
-              label="Item"
-              bg-color="white"
-              rounded
-              outlined
-            />
-            <q-input
-              v-model="text"
-              type="number"
-              label="Valor Unidade"
-              bg-color="white"
-              rounded
-              outlined
-            />
-            <q-input
-              v-model="text"
-              type="number"
-              label="Valor total"
-              bg-color="white"
-              rounded
-              outlined
-            />
-            <q-btn
-              v-if="$q.screen.width > 520"
-              rounded
-              color="red"
-              icon="delete"
-              @click="onClick"
-            />
-          </q-card-section>
-        </q-card>
+        <q-btn color="primary" icon="add" @click="addItem" />
       </main>
       <footer
         class="px-1 text-center"
