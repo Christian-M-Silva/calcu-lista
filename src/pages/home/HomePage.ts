@@ -19,6 +19,7 @@ export default defineComponent({
       ],
       pendingReload: false,
       valueTotal: 0,
+      search: "",
     };
   },
   components: { InputComponent },
@@ -70,5 +71,22 @@ export default defineComponent({
 
   beforeUnmount() {
     window.removeEventListener("beforeunload", this.handleBeforeUnload);
+  },
+
+  watch: {
+    search(termo) {
+      const termoNormalizado = termo.toLowerCase();
+
+      const itensComTermo = this.list.filter((item) =>
+        item.item.toLowerCase().includes(termoNormalizado)
+      );
+
+      const itensSemTermo = this.list.filter(
+        (item) => !item.item.toLowerCase().includes(termoNormalizado)
+      );
+
+      // Retorna os itens com o termo primeiro, seguidos pelos demais
+      this.list = [...itensComTermo, ...itensSemTermo];
+    },
   },
 });

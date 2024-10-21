@@ -12,7 +12,7 @@
             rounded
           />
           <q-input
-            v-model="text"
+            v-model="search"
             type="text"
             placeholder="Busque por um item"
             bg-color="white"
