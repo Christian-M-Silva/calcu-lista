@@ -20,6 +20,7 @@ export default defineComponent({
       pendingReload: false,
       valueTotal: 0,
       search: "",
+      isBuyFirst: true,
     };
   },
   components: { InputComponent },
@@ -38,6 +39,15 @@ export default defineComponent({
         totalValue: 0,
         isBuy: false,
       });
+    },
+
+    sort() {
+      this.isBuyFirst = !this.isBuyFirst;
+
+      const order = this.isBuyFirst ? -1 : 1;
+      this.list.sort((a, b) =>
+        a.isBuy === b.isBuy ? 0 : a.isBuy ? order : -order
+      );
     },
 
     calcTotal() {

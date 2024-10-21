@@ -30,7 +30,7 @@
           <q-btn
             text-color="white"
             icon="import_export"
-            @click="onClick"
+            @click="sort"
             outline
             rounded
           />
