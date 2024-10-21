@@ -44,7 +44,7 @@
           color="grey"
           icon="clear_all"
           label="Limpar lista"
-          @click="showModalConfirmClearList"
+          @click="this.confirmClearList = true"
         />
         <q-card v-for="(item, id) in list" :key="id" class="rounded-borders">
           <q-card-section
@@ -131,14 +131,14 @@
             icon="upgrade"
             label="Exportar"
             :size="$q.screen.width < 520 ? '12px' : ''"
-            @click="onClick"
+            @click="exportExcel"
           />
           <q-btn
             color="blue"
-            icon="save"
-            label="Salvar"
+            icon="restart_alt"
+            label="Zerar"
             :size="$q.screen.width < 520 ? '12px' : ''"
-            @click="onClick"
+            @click="confirmResetList = true"
           />
           <q-btn
             v-if="$q.screen.width > 520"
@@ -146,42 +146,11 @@
             icon="clear_all"
             :disable="list.length == 1"
             label="Limpar lista"
-            @click="showModalConfirmClearList"
+            @click="this.confirmClearList = true"
           />
         </div>
       </div>
     </div>
-    <q-dialog v-model="alert">
-      <q-card class="shadow-lg rounded-lg bg-dark">
-        <q-card-section class="bg-gray-900 text-white py-4 px-6 rounded-t-lg">
-          <div class="font-bold text-2xl">Atenção</div>
-        </q-card-section>
-
-        <q-card-section
-          class="bg-gray-900 py-4 px-6 text-gray-300 text-base leading-relaxed"
-        >
-          Os dados estão sendo salvos localmente no seu navegador. No entanto,
-          caso o histórico ou os dados de navegação sejam limpos, essas
-          informações poderão ser perdidas. Para ter os dados salvos sugerimos a
-          exportação dos dados.
-        </q-card-section>
-
-        <div class="bg-gray-900 pl-2 py-2 flex items-center">
-          <q-checkbox v-model="orange" />
-          <span class="text-gray-400 font-medium">Não mostrar novamente</span>
-        </div>
-
-        <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
-          <q-btn
-            flat
-            label="Entendido"
-            color="white"
-            class="text-gray-400"
-            v-close-popup
-          />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
     <q-dialog v-model="confirmClearList">
       <q-card class="shadow-lg rounded-lg bg-dark">
         <q-card-section class="bg-gray-900 text-white py-4 rounded-t-lg">
@@ -195,6 +164,27 @@
             label="SIM"
             color="green"
             @click="deleteList"
+            text-color="black"
+            v-close-popup
+          />
+          <q-btn label="NÃO" color="red" text-color="black" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="confirmResetList">
+      <q-card class="shadow-lg rounded-lg bg-dark">
+        <q-card-section class="bg-gray-900 text-white py-4 rounded-t-lg">
+          <div class="font-bold gt520:text-2xl text-lg">
+            Deseja reiniciar os valores unitários e o status de compra de todos
+            os itens da lista?
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
+          <q-btn
+            label="SIM"
+            color="green"
+            @click="resetList"
             text-color="black"
             v-close-popup
           />

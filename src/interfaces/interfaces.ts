@@ -3,5 +3,5 @@ export interface Item {
   item: string;
   unityValue: number | null;
   totalValue: number;
-  isBuy: boolean;
+  isBuy: boolean | null;
 }
