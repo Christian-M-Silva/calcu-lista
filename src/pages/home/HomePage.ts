@@ -6,6 +6,8 @@ export default defineComponent({
     return {
       alert: false,
       confirm: false,
+      confirmClearItem: false,
+      idClear: 0,
       list: [
         {
           qtd: null,
@@ -45,8 +47,13 @@ export default defineComponent({
       });
     },
 
-    deleteItem(id: number) {
-      this.list.splice(id, 1);
+    showModalConfirm(id: number) {
+      this.idClear = id;
+      this.confirmClearItem = true;
+    },
+
+    deleteItem() {
+      this.list.splice(this.idClear, 1);
       this.calcTotal();
     },
 

@@ -69,7 +69,7 @@
                 color="red"
                 icon="delete"
                 :disable="list.length == 1"
-                @click="deleteItem(id)"
+                @click="showModalConfirm(id)"
               />
             </div>
             <q-input
@@ -104,7 +104,7 @@
               color="red"
               icon="delete"
               :disable="list.length == 1"
-              @click="deleteItem(id)"
+              @click="showModalConfirm(id)"
             />
           </q-card-section>
         </q-card>
@@ -192,6 +192,31 @@
         <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
           <q-btn label="SIM" color="green" text-color="black" v-close-popup />
           <q-btn label="NÃO" color="red" text-color="black" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="confirmClearItem">
+      <q-card class="shadow-lg rounded-lg bg-dark">
+        <q-card-section class="bg-gray-900 text-white py-4 rounded-t-lg">
+          <div class="font-bold gt520:text-2xl text-lg">
+            Confirme a exclusão do item {{ list[idClear].item }}
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
+          <q-btn
+            label="Confirmar"
+            color="green"
+            text-color="black"
+            @click="deleteItem"
+            v-close-popup
+          />
+          <q-btn
+            label="cancelar"
+            color="red"
+            text-color="black"
+            v-close-popup
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
