@@ -44,7 +44,7 @@
           color="grey"
           icon="clear_all"
           label="Limpar lista"
-          @click="onClick"
+          @click="showModalConfirmClearList"
         />
         <q-card v-for="(item, id) in list" :key="id" class="rounded-borders">
           <q-card-section
@@ -69,7 +69,7 @@
                 color="red"
                 icon="delete"
                 :disable="list.length == 1"
-                @click="showModalConfirm(id)"
+                @click="showModalConfirmClearItem(id)"
               />
             </div>
             <q-input
@@ -104,7 +104,7 @@
               color="red"
               icon="delete"
               :disable="list.length == 1"
-              @click="showModalConfirm(id)"
+              @click="showModalConfirmClearItem(id)"
             />
           </q-card-section>
         </q-card>
@@ -144,8 +144,9 @@
             v-if="$q.screen.width > 520"
             color="grey"
             icon="clear_all"
+            :disable="list.length == 1"
             label="Limpar lista"
-            @click="onClick"
+            @click="showModalConfirmClearList"
           />
         </div>
       </div>
@@ -181,7 +182,7 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <q-dialog v-model="confirm">
+    <q-dialog v-model="confirmClearList">
       <q-card class="shadow-lg rounded-lg bg-dark">
         <q-card-section class="bg-gray-900 text-white py-4 rounded-t-lg">
           <div class="font-bold gt520:text-2xl text-lg">
@@ -190,7 +191,13 @@
         </q-card-section>
 
         <q-card-actions align="right" class="bg-gray-900 py-2 px-6">
-          <q-btn label="SIM" color="green" text-color="black" v-close-popup />
+          <q-btn
+            label="SIM"
+            color="green"
+            @click="deleteList"
+            text-color="black"
+            v-close-popup
+          />
           <q-btn label="NÃO" color="red" text-color="black" v-close-popup />
         </q-card-actions>
       </q-card>

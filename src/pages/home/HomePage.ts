@@ -7,6 +7,7 @@ export default defineComponent({
       alert: false,
       confirm: false,
       confirmClearItem: false,
+      confirmClearList: false,
       idClear: 0,
       list: [
         {
@@ -58,7 +59,7 @@ export default defineComponent({
       });
     },
 
-    showModalConfirm(id: number) {
+    showModalConfirmClearItem(id: number) {
       this.idClear = id;
       this.confirmClearItem = true;
     },
@@ -66,6 +67,22 @@ export default defineComponent({
     deleteItem() {
       this.list.splice(this.idClear, 1);
       this.calcTotal();
+    },
+
+    showModalConfirmClearList() {
+      this.confirmClearList = true;
+    },
+
+    deleteList() {
+      this.list = [
+        {
+          qtd: null,
+          item: "",
+          unityValue: null,
+          totalValue: 0,
+          isBuy: false,
+        },
+      ];
     },
 
     handleBeforeUnload(event: BeforeUnloadEvent) {
