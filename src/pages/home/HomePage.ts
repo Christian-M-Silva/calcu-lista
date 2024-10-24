@@ -98,6 +98,7 @@ export default defineComponent({
       // Exporta o arquivo Excel
       XLSX.writeFile(workbook, "lista_compras.xlsx");
     },
+    // eslint-disable-next-line
     async importExcel(files: any) {
       const file = (files.target as HTMLInputElement).files?.[0];
       if (!file) return;
@@ -106,6 +107,7 @@ export default defineComponent({
       const workbook = XLSX.read(data, { type: "array" });
 
       const worksheet = workbook.Sheets[workbook.SheetNames[0]]; // Pega a primeira aba
+      // eslint-disable-next-line
       const jsonData: any[] = XLSX.utils.sheet_to_json(worksheet, {
         defval: null,
       });
@@ -121,11 +123,10 @@ export default defineComponent({
           isBuy: row.Comprado === "Sim",
         }));
 
-      console.log(this.list);
       this.calcTotal();
     },
     calcTotalItem(item: Item, id: number) {
-      if (item.unityValue && item.qtd) {
+      if (item.unityValue !== null && item.qtd !== null) {
         this.list[id].totalValue = item.unityValue * item.qtd;
         this.calcTotal();
       }
@@ -195,6 +196,14 @@ export default defineComponent({
     },
   },
 
+  computed: {
+    formattedValue(): string {
+      return this.valueTotal.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+    },
+  },
   mounted() {
     window.addEventListener("beforeunload", this.handleBeforeUnload);
   },

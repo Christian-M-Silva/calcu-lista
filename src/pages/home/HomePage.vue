@@ -132,7 +132,7 @@
       <div
         class="row justify-between items-center fixed left-0 right-0 mx-auto bottom-0 bg-slate-950 gap-2 rounded-t-2xl p-4 gt520:w-[48%]"
       >
-        <span class="gt520:text-xl text-lg">R$ {{ valueTotal }}</span>
+        <span class="gt520:text-xl text-lg">{{ formattedValue }}</span>
         <div class="row gap-1">
           <q-btn
             color="positive"
