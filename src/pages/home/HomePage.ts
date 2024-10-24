@@ -29,6 +29,12 @@ export default defineComponent({
   },
   components: { InputComponent },
   methods: {
+    triggerFileInput() {
+      const input = this.$refs.fileInput as HTMLInputElement | null;
+      if (input) {
+        input.click(); // Simula o clique no input
+      }
+    },
     exportExcel() {
       // Converte os objetos para um formato adequado para o SheetJS
       const dados = this.list.map((obj) => ({
@@ -91,6 +97,32 @@ export default defineComponent({
 
       // Exporta o arquivo Excel
       XLSX.writeFile(workbook, "lista_compras.xlsx");
+    },
+    async importExcel(files: any) {
+      const file = (files.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+
+      const data = await file.arrayBuffer(); // Lê o arquivo como um buffer
+      const workbook = XLSX.read(data, { type: "array" });
+
+      const worksheet = workbook.Sheets[workbook.SheetNames[0]]; // Pega a primeira aba
+      const jsonData: any[] = XLSX.utils.sheet_to_json(worksheet, {
+        defval: null,
+      });
+
+      // Mapeia os dados de volta para o formato esperado
+      this.list = jsonData
+        .filter((row) => row.Item !== "Total") // Ignora a linha de total
+        .map((row) => ({
+          qtd: row.Quantidade || 0,
+          item: row.Item || "",
+          unityValue: row["Valor unitário"] || 0,
+          totalValue: row["Valor total"] || 0,
+          isBuy: row.Comprado === "Sim",
+        }));
+
+      console.log(this.list);
+      this.calcTotal();
     },
     calcTotalItem(item: Item, id: number) {
       if (item.unityValue && item.qtd) {

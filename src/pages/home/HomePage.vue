@@ -7,10 +7,18 @@
           <q-btn
             text-color="white"
             icon="vertical_align_bottom"
-            @click="onClick"
+            @click="triggerFileInput"
             outline
             rounded
           />
+          <input
+            type="file"
+            ref="fileInput"
+            @change="importExcel"
+            class="hidden"
+            accept=".xlsx, .xls"
+          />
+
           <q-input
             v-model="search"
             type="text"
