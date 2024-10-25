@@ -2,6 +2,7 @@ import { defineComponent } from "vue";
 import InputComponent from "@/components/atoms/input/InputComponent.vue";
 import { Item } from "@/interfaces/interfaces";
 import * as XLSX from "xlsx"; // Importa xlsx-style
+import { Money3Directive } from "v-money3";
 
 export default defineComponent({
   data() {
@@ -25,8 +26,17 @@ export default defineComponent({
       valueTotal: 0,
       search: "",
       isBuyFirst: true,
+      amount: "12345.67",
+      config: {
+        prefix: "R$ ",
+        suffix: "",
+        thousands: ".",
+        decimal: ",",
+        precision: 2,
+      },
     };
   },
+  directives: { money3: Money3Directive },
   components: { InputComponent },
   methods: {
     triggerFileInput() {
@@ -127,7 +137,18 @@ export default defineComponent({
     },
     calcTotalItem(item: Item, id: number) {
       if (item.unityValue !== null && item.qtd !== null) {
-        this.list[id].totalValue = item.unityValue * item.qtd;
+        const unityValueString = item.unityValue
+          .replace(/\s/g, "") // Remove espaços
+          .replace(/[R$.]/g, "") // Remove "R$" e pontos
+          .replace(",", "."); // Substitui vírgula por ponto
+
+        // Converte para número
+        const unityValueFloat = parseFloat(unityValueString);
+
+        if (isNaN(unityValueFloat)) {
+          throw new Error("Valor inválido para conversão");
+        }
+        this.list[id].totalValue = unityValueFloat * item.qtd;
         this.calcTotal();
       }
     },
@@ -170,7 +191,7 @@ export default defineComponent({
 
     resetList() {
       this.list.map((item) => {
-        item.unityValue = 0;
+        item.unityValue = null;
         item.totalValue = 0;
         item.isBuy = false;
       });

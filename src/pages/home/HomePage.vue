@@ -88,13 +88,10 @@
               rounded
               outlined
             />
-            <q-input
-              v-model="item.unityValue"
-              type="number"
-              label="Valor Unidade"
-              bg-color="white"
-              rounded
-              outlined
+            <input
+              v-model.lazy="item.unityValue"
+              v-money3="config"
+              class="custom-input max-gt520:h-[4rem]"
               @update:model-value="calcTotalItem(item, id)"
             />
             <q-input
