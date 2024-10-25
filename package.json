@@ -13,6 +13,7 @@
     "@quasar/app": "^3.3.3",
     "@quasar/extras": "^1.0.0",
     "quasar": "^2.16.0",
+    "v-money3": "^3.24.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "xlsx": "^0.18.5"
