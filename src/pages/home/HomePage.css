@@ -13,7 +13,7 @@
 
 .custom-input {
     background-color: white;
-    border: 2px solid #2196F3; /* Cor azul do contorno */
+    border: 2px none; /* Cor azul do contorno */
     border-radius: 30px; /* Deixa o input arredondado */
     padding: 10px 20px; /* Espaçamento interno */
     font-size: 16px; /* Tamanho do texto */
@@ -23,6 +23,6 @@
   }
   
   .custom-input:focus {
-    border-color: #1976D2; /* Muda para um azul mais escuro ao focar */
+    border: 2px solid #1976D2; /* Muda para um azul mais escuro ao focar */
   }
   

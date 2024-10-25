@@ -94,14 +94,12 @@
               class="custom-input max-gt520:h-[4rem]"
               @update:model-value="calcTotalItem(item, id)"
             />
-            <q-input
-              v-model="item.totalValue"
-              type="number"
-              label="Valor total"
-              bg-color="white"
-              rounded
-              disable
-              outlined
+            <input
+              v-model.lazy="item.totalValue"
+              v-money3="config"
+              class="custom-input max-gt520:h-[4rem]"
+              @update:model-value="calcTotalItem(item, id)"
+              disabled
             />
             <q-btn
               v-if="$q.screen.width > 520"

@@ -18,7 +18,7 @@ export default defineComponent({
           qtd: null,
           item: "",
           unityValue: null,
-          totalValue: 0,
+          totalValue: "0",
           isBuy: false,
         },
       ] as Item[],
@@ -60,7 +60,7 @@ export default defineComponent({
         qtd: null,
         item: "Total",
         unityValue: null,
-        totalValue: 0,
+        totalValue: "0",
         isBuy: null,
       });
 
@@ -137,27 +137,48 @@ export default defineComponent({
     },
     calcTotalItem(item: Item, id: number) {
       if (item.unityValue !== null && item.qtd !== null) {
-        const unityValueString = item.unityValue
-          .replace(/\s/g, "") // Remove espaços
-          .replace(/[R$.]/g, "") // Remove "R$" e pontos
-          .replace(",", "."); // Substitui vírgula por ponto
-
         // Converte para número
-        const unityValueFloat = parseFloat(unityValueString);
+        const unityValueFloat = this.convertStringMoneyToNumber(
+          item.unityValue
+        );
 
         if (isNaN(unityValueFloat)) {
           throw new Error("Valor inválido para conversão");
         }
-        this.list[id].totalValue = unityValueFloat * item.qtd;
+        const totalValue = unityValueFloat * item.qtd;
+
+        const totalValueStringFormatted =
+          this.convertNumberMoneyToString(totalValue);
+
+        this.list[id].totalValue = totalValueStringFormatted;
         this.calcTotal();
       }
+    },
+    convertStringMoneyToNumber(money: string): number {
+      const stringMoney = money
+        .replace(/\s/g, "") // Remove espaços
+        .replace(/[R$.]/g, "") // Remove "R$" e pontos
+        .replace(",", "."); // Substitui vírgula por ponto
+
+      // Converte para número
+      const numberMoney = parseFloat(stringMoney);
+      return numberMoney;
+    },
+    convertNumberMoneyToString(money: number): string {
+      return (
+        "R$ " +
+        money
+          .toFixed(2) // Garante 2 casas decimais
+          .replace(".", ",") // Substitui o ponto decimal por vírgula
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      );
     },
     addItem() {
       this.list.push({
         qtd: null,
         item: "",
         unityValue: null,
-        totalValue: 0,
+        totalValue: "0",
         isBuy: false,
       });
     },
@@ -175,7 +196,7 @@ export default defineComponent({
       this.valueTotal = 0;
 
       this.list.map((itemMap) => {
-        this.valueTotal += itemMap.totalValue;
+        this.valueTotal += this.convertStringMoneyToNumber(itemMap.totalValue);
       });
     },
 
@@ -192,7 +213,7 @@ export default defineComponent({
     resetList() {
       this.list.map((item) => {
         item.unityValue = null;
-        item.totalValue = 0;
+        item.totalValue = "0";
         item.isBuy = false;
       });
       this.calcTotal();
@@ -204,7 +225,7 @@ export default defineComponent({
           qtd: null,
           item: "",
           unityValue: null,
-          totalValue: 0,
+          totalValue: "0",
           isBuy: false,
         },
       ];
