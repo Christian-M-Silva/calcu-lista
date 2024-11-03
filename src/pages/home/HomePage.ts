@@ -98,6 +98,7 @@ export default defineComponent({
           }
         }
       } else {
+        // eslint-disable-next-line
         console.error("Referência de range não encontrada na planilha.");
       }
 

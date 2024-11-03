@@ -2,7 +2,7 @@
   <div class="row justify-center bg-image bg-no-repeat bg-cover bg-center">
     <div :class="`${$q.screen.lt.md ? '' : 'rounded-xl'} text-white`">
       <header class="pt-4">
-        <h2 class="py-8">Calcu-lista</h2>
+        <div class="py-5 text-7xl mb-3">Calcu-lista</div>
         <div class="row justify-center gap-7 pb-9">
           <q-btn
             text-color="white"
